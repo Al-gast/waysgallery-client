@@ -1,11 +1,8 @@
 import Button from "../../components/Button"
-import Card from "../../components/Card"
 import Layout from "../../components/layouts/Layout"
 import { useRouter } from "next/router"
-import Rp from "rupiah-format"
 import { API } from "../api/api"
 import { useEffect, useState } from "react"
-import dateFormat from "dateformat";
 
 export default function DetailUser() {
   const router = useRouter()
@@ -14,7 +11,6 @@ export default function DetailUser() {
   
   const id = router.query.user
   const ID = user.id
-  console.log("userrrrrrrrrrr", post);
 
   useEffect(() => {
     const getUser = async (e) => {
@@ -28,17 +24,13 @@ export default function DetailUser() {
     getUser();
   }, []);
 
-  
-
   useEffect(() => {
     const getPost = async (e) => {
       try {
         const response = await API.get(`/posts/${ID}`);
-        console.log("asdfasfdsaf", response);
         setPost(response.data.data);
-        console.log("isi post", response.data.data)
       } catch (error) {
-        console.log("kena eror wojeokwaeor", error);
+        console.log(error);
       }
     };
 
@@ -75,8 +67,8 @@ export default function DetailUser() {
             <p className="mb-10 font-semibold">{user.name} Works</p>
             <div className="grid grid-cols-4 gap-2">
             {post?.map((item) =>(
-                <div>
-                  <img src={`http://localhost:5000/uploads/${item.image1}`} alt="" onClick={() => router.push(`/detail/${item.userID}`)} className="cursor-pointer"/>
+                <div key={item.id}>
+                  <img src={item.image1} alt="" onClick={() => router.push(`/detail/${item.userID}`)} className="cursor-pointer"/>
                 </div>
               ))}
             </div>

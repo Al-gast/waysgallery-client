@@ -1,22 +1,14 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API } from "../api/api";
 
 //component
-import Card from "../../components/Card"
 import Layout from "../../components/layouts/Layout"
-import { UserContext } from "../../context/UserContext";
 import Button from "../../components/Button";
 
 export default function Detail() {
   const router = useRouter()
-  
-  const [state, dispatch] = useContext(UserContext)
-
   const [post, setPost] = useState([])
-  // console.log("posttttttttttttt", post);
-
   const id = router.query.detail
 
   useEffect(() => {
@@ -37,15 +29,13 @@ export default function Detail() {
       <div className="md:px-60 py-5">
       <div className="flex justify-between items-center mb-5">
             <div>
-              {/* <Link href="/detail-user" className="cursor-pointer"> */}
-                <div className="flex items-center " onClick={() => router.push(`/user/${post?.userID}`)}>
-                    <img src={"http://localhost:5000/uploads/" + post?.userId?.image} alt="profile" className="cursor-pointer h-[60px] w-[60px] object-cover object-center rounded-full mr-4"/>
-                    <div>
-                        <p className="font-bold text-lg cursor-pointer">{post?.title}</p>
-                        <p className="cursor-pointer">{post?.userId?.name}</p>
-                    </div>
-                </div>
-              {/* </Link> */}
+              <div className="flex items-center " onClick={() => router.push(`/user/${post?.userID}`)}>
+                  <img src={post?.userId?.image} alt="profile" className="cursor-pointer h-[60px] w-[60px] object-cover object-center rounded-full mr-4"/>
+                  <div>
+                      <p className="font-bold text-lg cursor-pointer">{post?.title}</p>
+                      <p className="cursor-pointer">{post?.userId?.name}</p>
+                  </div>
+              </div>
             </div>
               <div className="flex items-center">
               <div>
@@ -55,32 +45,32 @@ export default function Detail() {
             </div>
         </div>
         <div className="mb-5">
-            <img src={"http://localhost:5000/uploads/" + post?.image1} alt="" className="w-full"/>
+            <img src={post?.image1} alt="" className="w-full"/>
             <div className="flex justify-center mt-3">
               <div className="mr-1">
                 {post?.image2 ? (
-                  <img src={"http://localhost:5000/uploads/" + post?.image2} alt="" className="w-36"/>
+                  <img src={post?.image2} alt="" className="w-36"/>
                 ) : (
                   <div className="hidden"></div>
                 )}         
               </div>
               <div className="mr-1">
                 {post?.image3 ? (
-                  <img src={"http://localhost:5000/uploads/" + post?.image3} alt="" className="w-36"/>
+                  <img src={post?.image3} alt="" className="w-36"/>
                 ) : (
                   <div className="hidden"></div>
                 )}         
               </div>
               <div className="mr-1">
                 {post?.image4 ? (
-                  <img src={"http://localhost:5000/uploads/" + post?.image4} alt="" className="w-36"/>
+                  <img src={post?.image4} alt="" className="w-36"/>
                 ) : (
                   <div className="hidden"></div>
                 )}         
               </div>
               <div className="mr-1">
                 {post?.image5 ? (
-                  <img src={"http://localhost:5000/uploads/" + post?.image5} alt="" className="w-36"/>
+                  <img src={post?.image5} alt="" className="w-36"/>
                 ) : (
                   <div className="hidden"></div>
                 )}         

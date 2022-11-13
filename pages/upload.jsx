@@ -1,47 +1,13 @@
 import Layout from "../components/layouts/Layout"
 import Input from "../components/Input"
 import Button from "../components/Button"
-import { useContext, useEffect, useState } from "react"
-import { useMutation } from "react-query"
+import { useContext, useState } from "react"
 import { API } from "./api/api"
 import { useRouter } from "next/router"
 import { Error, Success } from '../helper/toast';
 import { UserContext } from "../context/UserContext"
 
 export default function Upload() {
-//   const [previewName, setPreviewName] = useState("")
-//   const [form, setForm] = useState({})
-//   const route = useRouter()
-
-//   const handleChange = (e) => {
-//     setForm({
-//       ...form,
-//       [e.target.name]:
-//       e.target.type === "file" ? e.target.files : e.target.value,
-//     })
-//     if (e.target.type === "file") {
-//       setPreviewName(e.target.files[0].name)
-//     }
-//   }
-
-//   const handleSubmit = useMutation(async (e) => {
-//     try{
-//       e.preventDefault()
-
-//       const formData = new FormData()
-//       formData.set("image", form.image[0], form.image[0].name);
-//       formData.set("title", form.title);
-//       formData.set("price", form.price);
-
-//       // insert category data
-//       await API.post("/product", formData)
-//       Success({ message: `Add Product Success!` })
-//       route.push('/list-products')
-//     }catch (error){
-//       Error({ message: `Add Product Filed!` })
-//     }
-//   })
-
 const router = useRouter()
 
 const [state, dispatch] = useContext(UserContext);
@@ -50,12 +16,6 @@ const [preview2, setPreview2] = useState(null);
 const [preview3, setPreview3] = useState(null);
 const [preview4, setPreview4] = useState(null);
 const [preview5, setPreview5] = useState(null);
-
-  // localhost:5000/api/v1/users?search=${}&date=${}
-
-  // useEffect(() => {
-  //   document.title = "Upload Post";
-  // }, []);
 
   const [form, setForm] = useState({
     title: "",

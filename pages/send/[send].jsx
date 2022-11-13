@@ -1,8 +1,6 @@
 import Layout from "../../components/layouts/Layout"
-import Input from "../../components/Input"
 import Button from "../../components/Button"
 import { useContext, useState } from "react"
-import { useMutation } from "react-query"
 import { API } from "../api/api"
 import { useRouter } from "next/router"
 import { Error, Success } from '../../helper/toast';
@@ -26,8 +24,6 @@ export default function SendProject() {
       image4: "",
       image5: "",
     });
-
-    console.log("formmmmmmmmmmmmm", form);
   
     const handleChange = (e) => {
       setForm({

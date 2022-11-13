@@ -1,22 +1,13 @@
 import Button from "../components/Button"
-import Card from "../components/Card"
 import Layout from "../components/layouts/Layout"
 import { useRouter } from "next/router"
-import Rp from "rupiah-format"
 import { API } from "./api/api"
-import { useContext, useEffect, useState } from "react"
-import dateFormat from "dateformat";
-import { UserContext } from "../context/UserContext"
+import { useEffect, useState } from "react"
 
 export default function Profile() {
   const router = useRouter()
-  const [state, dispatch] = useContext(UserContext);
   const [profile, setProfile] = useState({})
   const [post, setPost] = useState([])
-
-  // console.log("profileeeeeeeeeeeeeee", profile);
-  // console.log("postttttttttttttttttttttttt", post)
-
   const ID = profile.id
 
   useEffect(() => {
@@ -55,7 +46,7 @@ export default function Profile() {
               <img src={
                 profile.image === ""
                   ? "/noProfile.jpg"
-                  : `http://localhost:5000/uploads/${profile.image}`
+                  : profile.image
               }
                 alt="profile" className="cursor-pointer h-[110px] w-[110px] object-cover object-center rounded-full mr-4 mb-5" />
               <p className="mb-5 font-bold text-xl">{profile.name}</p>
@@ -66,7 +57,7 @@ export default function Profile() {
               <img src={
                 profile.bestArt === ""
                   ? "/noProfile.jpg"
-                  : `http://localhost:5000/uploads/${profile.bestArt}`
+                  : profile.bestArt
               } alt=""
                 className="object-cover object-center" />
             </div>
@@ -75,8 +66,8 @@ export default function Profile() {
             <p className="mb-10 font-semibold">My Works</p>
             <div className="grid grid-cols-4 gap-2">
               {post?.map((item) =>(
-                <div>
-                  <img src={`http://localhost:5000/uploads/${item?.image1}`} alt="" onClick={() => router.push(`/detail/${item.userID}`)} className="cursor-pointer"/>
+                <div key={item.id}>
+                  <img src={item?.image1} alt="" onClick={() => router.push(`/detail/${item.userID}`)} className="cursor-pointer"/>
                 </div>
               ))}
             </div>

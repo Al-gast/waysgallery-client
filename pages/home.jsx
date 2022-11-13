@@ -1,21 +1,14 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
 import { API } from "./api/api";
 
 //component
-import Card from "../components/Card"
 import Layout from "../components/layouts/Layout"
-import { UserContext } from "../context/UserContext";
 import Input from "../components/Input";
 
 export default function Home() {
   const router = useRouter()
-  const [state, dispatch] = useContext(UserContext)
   const [post, setPost] = useState([]);
   const [search, setSearch] = useState("")
-
-  // console.log("posttttttttttttt",post);
 
   useEffect(() => {
     const getPost = async (e) => {
@@ -29,17 +22,6 @@ export default function Home() {
     getPost();
   }, []);
 
-  //   const getShops = async (e) => {
-  //     try {
-  //       const response = await API.get("/partners");
-  //       setShop(response.data.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   getShops();
-  // }, []);
-
   return (
     <>
     <Layout title={process.env.appName}>
@@ -48,7 +30,6 @@ export default function Home() {
           <div className="mt-6">
             <select
             name="role" 
-            // onChange={handleChangeRegister}
             className="w-32 rounded-md border-gray-300 shadow-sm focus:ring-primary focus:border-gray-200 transition duration-300 bg-gray-100">
               <option value="today">Today</option>
               <option value="following">Following</option>
@@ -66,11 +47,11 @@ export default function Home() {
           <div key={post.id} className="cursor-pointer">
             {post?.image1 ? (
               <div onClick={() => router.push(`/detail/${post.id}`)}>
-                <img src={`http://localhost:5000/uploads/${post.image1}`} alt="" />
+                <img src={post.image1} alt="" />
               </div>
             ) : (
               <img
-                src="https://st2.depositphotos.com/1561359/12101/v/950/depositphotos_121012076-stock-illustration-blank-photo-icon.jpg"
+                src="noProfile.jpg"
                 alt="a"
                 className="object-cover h-[200px] w-[200px]"
               />

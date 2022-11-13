@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Layout from "../components/layouts/Layout"
-import Transaction from "../dummy/transaction"
 import { API } from "./api/api";
-import Rp from "rupiah-format";
 import { UserContext } from "../context/UserContext";
 import { useQuery } from "react-query";
 import Button from "../components/Button";
