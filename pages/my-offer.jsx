@@ -108,7 +108,7 @@ export default function MyOffer() {
             </thead>
               <tbody>
               {transactions?.map((item, index) => (
-                <tr className="border-b bg-white">
+                <tr className="border-b bg-white" key={item.id}>
                   <td className="py-4 px-6">{index + 1}</td>
                   <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{item.buyer.name}</th>
                   <td className="py-4 px-6">{item.title}</td>

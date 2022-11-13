@@ -10,13 +10,6 @@ export default function MyOrder() {
 
   const [state] = useContext(UserContext);
   const router = useRouter()
-  const [showTrans, setShowTrans] = useState(false);
-  const [idTrans, setIdTrans] = useState(null);
-
-  const handleShow = (id) => {
-    setIdTrans(id);
-    setShowTrans(true);
-  };
 
     let { data: transactions } = useQuery(
       "mytransactions12Cacwadhe",
