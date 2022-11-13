@@ -133,6 +133,7 @@ const [preview5, setPreview5] = useState(null);
       router.push("/home");
     } catch (error) {
       console.log(error);
+      Error({ message: `Project Uploaded Filed!` })
     }
   };
 
