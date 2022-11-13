@@ -4,6 +4,7 @@ import { API } from "./api/api";
 //component
 import Layout from "../components/layouts/Layout"
 import Input from "../components/Input";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const router = useRouter()

@@ -6,8 +6,7 @@ import Dropdown from "./dropdown/dropdown";
 
 import { UserContext } from "../../context/UserContext";
 import { CartContext } from "../../context/CartContext";
-import { useContext, useEffect } from "react";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Error, Success } from '../../helper/toast';
 import { API } from "../../pages/api/api";
