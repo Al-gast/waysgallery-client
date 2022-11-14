@@ -59,7 +59,7 @@ export default function Navbar({showLogin, setShowLogin, counter}) {
                 <img src={
                   profile.image === ""
                     ? "/noProfile.jpg"
-                    : `http://localhost:5000/uploads/${profile.image}`
+                    : profile.image
                 } alt="profile" onClick={() => setShowDropdown(true)} className="cursor-pointer h-[60px] w-[60px] object-cover object-center rounded-full"/>
                 <Dropdown isVisible={showDropdown} onClose={() => setShowDropdown(false)}>
                   <div>
