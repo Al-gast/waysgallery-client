@@ -9,6 +9,7 @@ import { UserContext } from "../../context/UserContext";
 
 export default function Detail() {
   const [state, dispatch] = useContext(UserContext);
+  console.log("state", state);
   const router = useRouter()
   const [post, setPost] = useState([])
   const id = router.query.detail
