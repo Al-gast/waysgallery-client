@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { API } from "../api/api";
 
 //component
 import Layout from "../../components/layouts/Layout"
 import Button from "../../components/Button";
+import { UserContext } from "../../context/UserContext";
 
 export default function Detail() {
+  const [state, dispatch] = useContext(UserContext);
   const router = useRouter()
   const [post, setPost] = useState([])
   const id = router.query.detail
@@ -22,6 +24,58 @@ export default function Detail() {
     };
     getPost();
   }, []);
+
+  const [form1] = useState({
+    following: "none",
+  });
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.set("following", post.userId.id);
+
+      const response = await API.patch(`/user/${state?.user.id}`, formData);
+
+      const auth = await API.get("/check-auth");
+
+      let payload = auth.data.data;
+
+      dispatch({
+        type: "USER_SUCCESS",
+        payload,
+      });
+
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSubmit1 = async (e) => {
+    try {
+      e.preventDefault();
+
+      const formData = new FormData();
+      formData.set("following", form1.following);
+
+      const response = await API.patch(`/user/${state?.user.id}`, formData);
+
+      const auth = await API.get("/check-auth");
+
+      let payload = auth.data.data;
+
+      dispatch({
+        type: "USER_SUCCESS",
+        payload,
+      });
+
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -39,7 +93,16 @@ export default function Detail() {
             </div>
               <div className="flex items-center">
               <div>
-                <Button onClick={() => router.push("/upload")} className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Follow</Button>
+                {state?.user?.following == "none" ? (
+                  <Button onClick={(e) => {handleSubmit(e)}} className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Follow</Button>
+                ) : (
+                  <></>
+                )}
+                {state?.user?.following == post?.userId?.id ? (
+                  <Button onClick={(e) => {handleSubmit1(e)}} className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Unfollow</Button>
+                ) : (
+                  <></>
+                )}
                 <Button onClick={() => router.push(`/hired/${post?.userId?.id}`)} className="px-6 py-1.5 bg-primary text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-primary text-sm font-medium transition duration-300">Hire</Button>
               </div>
             </div>

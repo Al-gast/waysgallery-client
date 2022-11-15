@@ -51,7 +51,7 @@ export default function DetailUser() {
               <p className="mb-5 font-bold text-xl">{user.name}</p>
               <p className="mb-12 font-bold text-4xl">{user.greeting}</p>
               <div>
-                <Button onClick={() => router.push("/upload")} className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Follow</Button>
+                <Button onClick={() => router.push("/home")} className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Follow</Button>
                 <Button onClick={() => router.push(`/hired/${user?.id}`)} className="px-6 py-1.5 bg-primary text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-primary text-sm font-medium transition duration-300">Hire</Button>
               </div>
             </div>
