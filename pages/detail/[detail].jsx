@@ -30,53 +30,53 @@ export default function Detail() {
     following: "none",
   });
 
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   try {
+  //     e.preventDefault();
 
-      const formData = new FormData();
-      formData.set("following", post.userId.id);
+  //     const formData = new FormData();
+  //     formData.set("following", post.userId.id);
 
-      const response = await API.patch(`/user/${state?.user.id}`, formData);
+  //     const response = await API.patch(`/user/${state?.user.id}`, formData);
 
-      const auth = await API.get("/check-auth");
+  //     const auth = await API.get("/check-auth");
 
-      let payload = auth.data.data;
+  //     let payload = auth.data.data;
 
-      dispatch({
-        type: "USER_SUCCESS",
-        payload,
-      });
+  //     dispatch({
+  //       type: "USER_SUCCESS",
+  //       payload,
+  //     });
 
-      refetch();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     refetch();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const handleSubmit1 = async (e) => {
-    try {
-      e.preventDefault();
+  // const handleSubmit1 = async (e) => {
+  //   try {
+  //     e.preventDefault();
 
-      const formData = new FormData();
-      formData.set("following", form1.following);
+  //     const formData = new FormData();
+  //     formData.set("following", form1.following);
 
-      const response = await API.patch(`/user/${state?.user.id}`, formData);
+  //     const response = await API.patch(`/user/${state?.user.id}`, formData);
 
-      const auth = await API.get("/check-auth");
+  //     const auth = await API.get("/check-auth");
 
-      let payload = auth.data.data;
+  //     let payload = auth.data.data;
 
-      dispatch({
-        type: "USER_SUCCESS",
-        payload,
-      });
+  //     dispatch({
+  //       type: "USER_SUCCESS",
+  //       payload,
+  //     });
 
-      refetch();
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     refetch();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <>
@@ -94,16 +94,16 @@ export default function Detail() {
             </div>
               <div className="flex items-center">
               <div>
-                {state?.user?.following == "none" ? (
-                  <Button onClick={(e) => {handleSubmit(e)}} className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Follow</Button>
-                ) : (
+                {/* {state?.user?.following == "none" ? ( */}
+                  <Button className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Follow</Button>
+                {/* ) : (
                   <></>
                 )}
                 {state?.user?.following == post?.userId?.id ? (
                   <Button onClick={(e) => {handleSubmit1(e)}} className="px-6 py-1.5 bg-gray-400 text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-gray-400 text-sm font-medium transition duration-300">Unfollow</Button>
                 ) : (
                   <></>
-                )}
+                )} */}
                 <Button onClick={() => router.push(`/hired/${post?.userId?.id}`)} className="px-6 py-1.5 bg-primary text-white rounded ml-1 md:mx-1 hover:bg-white hover:text-primary text-sm font-medium transition duration-300">Hire</Button>
               </div>
             </div>
